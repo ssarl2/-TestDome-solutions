@@ -5,40 +5,20 @@ class TextInput
 {
 	std::string res;
 public:
-	TextInput()
-	{
-		res = "NULL";
-	}
-	void add(char c)
-	{
-		//if ((c + 0) >= 48 && (c + 0) <= 57)
-		//{
-		//	//std::cout << c;
-		//	res = res + c;
-		//}
-	}
-
+	virtual void add(char c) { res += c; }
 	std::string getValue() { return res; }
 };
 
 class NumericInput : public TextInput
 {
-	std::string rea;
 public:
-	NumericInput()
-	{
-		rea = "";
-	}
 	void add(char c)
 	{
 		if ((c + 0) >= 48 && (c + 0) <= 57)
 		{
-			//std::cout << c;
-			rea = rea + c;
+			TextInput::add(c);
 		}
 	}
-
-	std::string getValue() { return rea; }
 };
 
 #ifndef RunTests
