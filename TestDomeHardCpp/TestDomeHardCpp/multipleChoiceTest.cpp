@@ -1,18 +1,21 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 class MultipleChoiceTest
 {
 public:
-    MultipleChoiceTest(int questionsCount)
-    {
+    MultipleChoiceTest(int qc) : questionsCount(qc), answers(questionsCount, -1) {}
+    /*{
         this->questionsCount = questionsCount;
         answers = new int[questionsCount];
         for (int i = 0; i < questionsCount; i++)
         {
             answers[i] = -1;
         }
-    }
+    }*/
+
+    virtual ~MultipleChoiceTest() { std::cout << "Original destroyed" << std::endl; }
 
     void setAnswer(int questionIndex, int answer)
     {
@@ -28,21 +31,24 @@ protected:
     int questionsCount;
 
 private:
-    int* answers;
+    std::vector<int> answers;
 };
 
 class TimedMultipleChoiceTest : public MultipleChoiceTest
 {
 public:
     TimedMultipleChoiceTest(int questionsCount)
-        : MultipleChoiceTest(questionsCount)
-    {
+        : MultipleChoiceTest(questionsCount),
+        times(questionsCount, 0) {}
+    /*{
         times = new int[questionsCount];
         for (int i = 0; i < questionsCount; i++)
         {
             times[i] = 0;
         }
-    }
+    }*/
+
+    ~TimedMultipleChoiceTest() { std::cout << "Timed destroyed" << std::endl; }
 
     void setTime(int questionIndex, int time)
     {
@@ -55,7 +61,7 @@ public:
     }
 
 private:
-    int* times;
+    std::vector<int> times;
 };
 
 #ifndef RunTests

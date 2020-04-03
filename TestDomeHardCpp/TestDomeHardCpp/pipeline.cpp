@@ -34,7 +34,7 @@ int main()
 }
 #endif
 
-/* 
+/*        lambda
 <int()>            vector    (int)       std::function
 return    =>     ([&funcs](const T& arg) { return });
 push_back =>     ([0](int x) -> int { return x * 3; });
