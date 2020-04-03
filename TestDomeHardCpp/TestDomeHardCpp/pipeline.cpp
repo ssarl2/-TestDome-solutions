@@ -42,7 +42,7 @@ push_back =>     ([0](int x) -> int { return x * 3; });
 
 19 | vector<function<int(int)>> functions;
 ...
-27 | functions structor
+27 | functions structure
      return [funcs[0][1][2]](const int& 3)
      {
        int v = 3;
