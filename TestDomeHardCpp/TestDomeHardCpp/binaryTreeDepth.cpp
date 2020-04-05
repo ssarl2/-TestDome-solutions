@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 
 class Node
 {
@@ -22,7 +23,19 @@ public:
 
     int height()
     {
-        throw std::logic_error("Waiting to be implemented");
+        int leftHeight = -1;
+        int rightHeight = -1;
+
+        if (this->getLeftChild())
+        {
+            leftHeight = getLeftChild()->height();
+        }
+        if (this->getRightChild())
+        {
+            rightHeight = getRightChild()->height();
+        }
+
+        return std::max(leftHeight, rightHeight) + 1;
     }
 private:
     Node* leftChild;
@@ -40,3 +53,14 @@ int main()
     std::cout << root->height();
 }
 #endif
+
+/*
+
+Some node's child node is also some node's parent.
+Some nodes can both have parents as well as children.
+It means I don't need to think about this question in a difficult way.
+I define first leftHeight, rightHeight.
+Check left and right. Not if, else if.
+And then return the biggest number between leftHeight and rightHeight with adding + 1 counting.
+
+*/

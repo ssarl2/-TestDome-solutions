@@ -13,16 +13,28 @@ public:
 class Egg
 {
 public:
-	Egg(std::function<Bird* ()> createBird)
+	Egg(std::function<Bird* ()> createBird) : createBird(createBird)
 	{
-		throw std::logic_error("Waiting to be implemented");
+		hatched = false;
 	}
 
 	Bird* hatch()
 	{
-		throw std::logic_error("Waiting to be implemented");
+		if (hatched)
+		{
+			throw std::logic_error("Already hatched.");
+		}
+		else
+			hatched = true;
+
+		return createBird();
 	}
+private:
+	bool hatched;
+	std::function<Bird* ()> createBird;
 };
+
+Bird* chicken();
 
 class Chicken : public Bird
 {
@@ -34,9 +46,15 @@ public:
 
 	Egg* lay()
 	{
-		throw std::logic_error("Waiting to be implemented");
+		Egg* egg = new Egg(chicken);
+		return egg;
 	}
 };
+
+Bird* chicken()
+{
+	return new Chicken();
+}
 
 #ifndef RunTests
 int main()
@@ -47,3 +65,12 @@ int main()
 	Bird* childChicken1 = egg1->hatch();
 }
 #endif
+
+/*
+
+1. Prevent to hatching an egg for the second time
+2. A chicken lays an egg
+3. Create a new chicken outside of class
+4. Insert a created chicken to lay() to make eggs
+
+*/

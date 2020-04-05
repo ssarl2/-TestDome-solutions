@@ -14,8 +14,8 @@ public:
             answers[i] = -1;
         }
     }*/
-
-    virtual ~MultipleChoiceTest() { std::cout << "Original destroyed" << std::endl; }
+    // If I used above for loop instead of 'vector' then, I needed to define destructor
+    //virtual ~MultipleChoiceTest() { std::cout << "Original destroyed" << std::endl; }
 
     void setAnswer(int questionIndex, int answer)
     {
@@ -47,8 +47,8 @@ public:
             times[i] = 0;
         }
     }*/
-
-    ~TimedMultipleChoiceTest() { std::cout << "Timed destroyed" << std::endl; }
+    // If I used above for loop instead of 'vector' then, I needed to define destructor
+    //~TimedMultipleChoiceTest() { std::cout << "Timed destroyed" << std::endl; }
 
     void setTime(int questionIndex, int time)
     {
